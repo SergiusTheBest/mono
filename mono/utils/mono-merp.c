@@ -337,13 +337,11 @@ mono_merp_send (MERPStruct *merp)
 
 	// Only one we define on OSX
 	if (pid == 0) {
-		const char *open_path = "/usr/bin/open";
-		const char *argvOpen[] = {open_path, "-a", config.merpGUIPath, NULL};
-		execv (open_path, (char**)argvOpen);
+		const char *argvOpen[] = {config.merpGUIPath, NULL};
+		execv (config.merpGUIPath, (char**)argvOpen);
 		exit (-1);
 	} else {
 		int status;
-		waitpid (pid, &status, 0);
 		int exit_status = FALSE;
 
 		while (TRUE) {
